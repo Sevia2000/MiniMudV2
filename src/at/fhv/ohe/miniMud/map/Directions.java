@@ -15,12 +15,8 @@ public enum Directions {
         Value = i;
     }
 
-    public int getValue() {
-        return Value;
-    }
-
     public static Directions getReverse(Directions direction) {
-        switch ((direction.getValue() + 2) % 4 ) {
+        switch ((direction.getValue() + 2) % 4) {
             case 0:
                 return NORTH;
             case 1:
@@ -32,5 +28,9 @@ public enum Directions {
             default:
                 throw new IllegalArgumentException();
         }
+    }
+
+    public int getValue() {
+        return Value;
     }
 }

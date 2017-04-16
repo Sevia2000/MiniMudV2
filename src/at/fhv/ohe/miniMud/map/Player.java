@@ -4,6 +4,7 @@ import at.fhv.ohe.miniMud.game.ConnectionHandler;
 import at.fhv.ohe.miniMud.map.FieldFunctions.ActionFunctions;
 import at.fhv.ohe.miniMud.map.Fields.Field;
 import at.fhv.ohe.miniMud.map.Fields.IllegalFieldEnterException;
+import at.fhv.ohe.miniMud.map.Items.IConsumable;
 import at.fhv.ohe.miniMud.map.Items.Items;
 
 import java.io.Serializable;
@@ -52,12 +53,16 @@ public class Player implements Serializable {
         return _position.getFieldID();
     }
 
-    public void setMapController(MapController mapController) {
-        _mapController = mapController;
-    }
-
     public void setOutStream(ConnectionHandler outStream) {
         _outStream = outStream;
+    }
+
+    public MapController getMapController() {
+        return _mapController;
+    }
+
+    public void setMapController(MapController mapController) {
+        _mapController = mapController;
     }
 
     // Inventory Action
@@ -83,6 +88,10 @@ public class Player implements Serializable {
         if (weight <= _maxWeight) {
             _carry.add(supplyOf);
         }
+    }
+
+    public void consume(IConsumable item) {
+        item.consumeBy(this);
     }
 
     // Player Stats
@@ -115,10 +124,10 @@ public class Player implements Serializable {
         _position.action(this, actionFunctions);
     }
 
-    public void lookInventorry() {
+    public void lookInventorry(List<Items> listOfItems) {
         StringBuilder buf = new StringBuilder();
         int i = 0;
-        for (Items item : _carry) {
+        for (Items item : listOfItems) {
             buf.append("\r\n <");
             buf.append(i);
             buf.append("> ");

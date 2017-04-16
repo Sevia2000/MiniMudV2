@@ -3,6 +3,8 @@ package at.fhv.ohe.miniMud.game;
 
 import at.fhv.ohe.miniMud.map.Directions;
 import at.fhv.ohe.miniMud.map.FieldFunctions.ActionFunctions;
+import at.fhv.ohe.miniMud.map.Items.IConsumable;
+import at.fhv.ohe.miniMud.map.Items.Items;
 import at.fhv.ohe.miniMud.map.MapController;
 import at.fhv.ohe.miniMud.map.Player;
 
@@ -99,36 +101,53 @@ public class Controller extends Thread {
 
                 case "getInv":
                     _player.playerOutputStream("<My Inventory>");
-                    _player.lookInventorry();
+                    _player.lookInventorry(_player.getAllItemsfromType(Items.class));
                     break;
 
                 case "action":
                     try {
                         _player.action(ActionFunctions.valueOf(get[1]));
-                    } catch (IllegalArgumentException e) {
+                    } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
                         _player.playerOutputStream("I dont understand??");
                     }
                     break;
 
-                case "exit":
+                case "consume":
+                    try {
+                        if (get[1] != null) {
+                            _player.consume((IConsumable) _player.getAllItemsfromType(IConsumable.class).get(Integer.parseInt(get[1])));
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        _player.playerOutputStream("<Consumable>");
+                        _player.lookInventorry(_player.getAllItemsfromType(IConsumable.class));
+                    }
+                    break;
+
+                case "?who":
+                    _player.playerOutputStream(_player.getMapController().lookForAllPlayerOnMap());
+                    break;
+
+                case "?exit":
                     _player.logOutFromGame();
                     _isActive = false;
                     _conHand.logOutPerformed();
                     break;
 
-                case "help":
+                case "?help":
+                    _player.playerOutputStream("???? Mysterius Helpfile ????");
                     break;
 
                 default:
                     _player.playerOutputStream("I dont understand??");
 
             }
+            _player.playerOutputStream("--------------------------------------------");
             _player.playerOutputStream("MUD>");
         }
     }
 
     private boolean isNewCommandAvariable() {
-        return (_exQueue.isEmpty()) ? false : true;
+        return !_exQueue.isEmpty();
     }
 
     private String getNextQueueItem() {

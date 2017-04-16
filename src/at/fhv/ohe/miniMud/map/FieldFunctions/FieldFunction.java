@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Oliver H on 15.04.2017.
  */
-public abstract class FieldFunction implements Serializable{
+public abstract class FieldFunction implements Serializable {
     private String _description;
 
     public FieldFunction(String description) {

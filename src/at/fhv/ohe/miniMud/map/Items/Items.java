@@ -5,12 +5,12 @@ import java.io.*;
 
 /**
  * Describes an item
- *
+ * <p>
  * Created by Oliver H on 15.04.2017.
  */
-public abstract class Items implements Serializable{
+public abstract class Items implements Serializable {
     private static final String _ONNOSHORTDESCR = "A Item";
-    private static final String _ONNOLONGDESCR  = "The Map Designer was to lazy to give this Item a proper description :(";
+    private static final String _ONNOLONGDESCR = "The Map Designer was to lazy to give this Item a proper description :(";
 
     private int _ItemID;
     private int _weight;
@@ -18,7 +18,7 @@ public abstract class Items implements Serializable{
     private String _longDescription;
 
     public Items(int itemID, int weight) {
-        this(itemID, weight,_ONNOSHORTDESCR, _ONNOLONGDESCR);
+        this(itemID, weight, _ONNOSHORTDESCR, _ONNOLONGDESCR);
     }
 
     public Items(int itemID, int weight, String shortDescription, String longDescription) {
@@ -26,22 +26,6 @@ public abstract class Items implements Serializable{
         _weight = weight;
         _shortDescription = shortDescription;
         _longDescription = longDescription;
-    }
-
-    public int getItemID() {
-        return _ItemID;
-    }
-
-    public int getWeight() {
-        return _weight;
-    }
-
-    public String getShortDescription() {
-        return _shortDescription;
-    }
-
-    public String getLongDescription() {
-        return _longDescription;
     }
 
     public static Items clone(Items item) {
@@ -58,5 +42,21 @@ public abstract class Items implements Serializable{
             e.printStackTrace();
             return null;
         }
+    }
+
+    public int getItemID() {
+        return _ItemID;
+    }
+
+    public int getWeight() {
+        return _weight;
+    }
+
+    public String getShortDescription() {
+        return _shortDescription;
+    }
+
+    public String getLongDescription() {
+        return _longDescription;
     }
 }

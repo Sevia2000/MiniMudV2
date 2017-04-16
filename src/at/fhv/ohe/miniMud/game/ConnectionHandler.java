@@ -10,14 +10,13 @@ import java.net.Socket;
  * Created by Oliver H on 16.04.2017.
  */
 public class ConnectionHandler extends Thread {
+    private static int iDs = 0;
     private Socket _clientSocket;
     private BufferedReader _fromClient;
     private PrintStream _toClient;
     private Controller _controller;
-
     private boolean _isActive;
     private int _id;
-    private static int iDs = 0;
 
 
     public ConnectionHandler(Socket mySocket) {
@@ -69,7 +68,7 @@ public class ConnectionHandler extends Thread {
         Server.serverLog("<log>Client disconnect");
     }
 
-    public void logOutPerformed () {
+    public void logOutPerformed() {
         _isActive = false;
     }
 

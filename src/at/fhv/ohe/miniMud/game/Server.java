@@ -7,7 +7,7 @@ import java.net.Socket;
 /**
  * Created by Oliver H on 16.04.2017.
  */
-public class Server extends Thread{
+public class Server extends Thread {
     private ServerSocket _socket;
 
     public Server(int port) {
@@ -17,6 +17,14 @@ public class Server extends Thread{
             e.printStackTrace();
         }
         this.start();
+    }
+
+    public static void main(String[] args) {
+        new Server(6262);
+    }
+
+    public static synchronized void serverLog(String s) {
+        System.out.println(s);
     }
 
     @Override
@@ -32,13 +40,5 @@ public class Server extends Thread{
                 break;
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Server(6262);
-    }
-
-    public static synchronized void serverLog(String s) {
-        System.out.println(s);
     }
 }

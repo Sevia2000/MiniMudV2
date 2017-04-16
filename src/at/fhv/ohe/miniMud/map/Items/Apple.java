@@ -5,10 +5,10 @@ import at.fhv.ohe.miniMud.map.Player;
 /**
  * Created by Oliver H on 15.04.2017.
  */
-public class Apple extends Items implements IConsumable{
+public class Apple extends Items implements IConsumable {
     private static final String _ONNOSHORTDESCR = "A Apple";
-    private static final String _ONNOLONGDESCR  = "A green Apple. It regenerates some Health";
-    private static final String _ONSUCESS  = "Hmm its so tasty..xD";
+    private static final String _ONNOLONGDESCR = "A green Apple. It regenerates some Health";
+    private static final String _ONSUCESS = "Hmm its so tasty..xD";
     private static final int _WEIGHT = 5;
     private static final int _HEALTHREGENERATION = 20;
 

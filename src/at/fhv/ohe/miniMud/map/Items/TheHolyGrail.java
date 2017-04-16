@@ -5,7 +5,7 @@ package at.fhv.ohe.miniMud.map.Items;
  */
 public class TheHolyGrail extends Items {
     private static final String _ONNOSHORTDESCR = "A Grail";
-    private static final String _ONNOLONGDESCR  = "A beautiful very old looking Grail. Maybe it is Holy";
+    private static final String _ONNOLONGDESCR = "A beautiful very old looking Grail. Maybe it is Holy";
     private static final int _WEIGHT = 5;
 
     public TheHolyGrail(int itemID) {

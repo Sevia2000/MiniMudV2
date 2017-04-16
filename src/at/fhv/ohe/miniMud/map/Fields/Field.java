@@ -18,7 +18,7 @@ public abstract class Field implements Serializable {
     // Default Strings
     private static final String _ONFUNCTIONNULL = "There is nothing to do..";
     private static final String _ONNOSHORTDESCR = "A Field.";
-    private static final String _ONNOLONGDESCR  = "The Map Designer was to lazy to give this Field a proper description :(";
+    private static final String _ONNOLONGDESCR = "The Map Designer was to lazy to give this Field a proper description :(";
 
     private Map<Directions, Field> _fieldBindings;
 
@@ -32,7 +32,7 @@ public abstract class Field implements Serializable {
     }
 
     public Field(int fieldID, String shortDescription, String longDescription) {
-        this(fieldID,shortDescription,longDescription, null);
+        this(fieldID, shortDescription, longDescription, null);
     }
 
     public Field(int fieldID, String shortDescription, String longDescription, IFieldFunction fieldFunction) {
@@ -49,7 +49,7 @@ public abstract class Field implements Serializable {
         if (_fieldFunction != null) {
             player.playerOutputStream(_ONFUNCTIONNULL);
         } else {
-            _fieldFunction.execude(player,actionFunctions);
+            _fieldFunction.execude(player, actionFunctions);
         }
     }
 

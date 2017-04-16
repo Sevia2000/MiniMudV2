@@ -9,10 +9,10 @@ import java.util.List;
 
 /**
  * Handels the Map
- *
+ * <p>
  * Created by Oliver H on 15.04.2017.
  */
-public class MapController implements Serializable{
+public class MapController implements Serializable {
     private String _mapName;
     private Field _PlayerSporneField;
     private List<Player> _playerPlayOnMap;
@@ -78,16 +78,16 @@ public class MapController implements Serializable{
         return true;
     }
 
-    private Player addNewPlayer(String name) throws IllegalArgumentException{
+    private Player addNewPlayer(String name) throws IllegalArgumentException {
         if (!isNameFree(name)) {
             throw new IllegalArgumentException("Name is already used :(");
         }
-        Player newPlayer = new Player(name,_playerIDs++, _PlayerSporneField, this);
+        Player newPlayer = new Player(name, _playerIDs++, _PlayerSporneField, this);
         _playerPlayOnMap.add(newPlayer);
         return newPlayer;
     }
 
-    public Player addPlayer(String name) throws IllegalArgumentException{
+    public Player addPlayer(String name) throws IllegalArgumentException {
         for (Player player : _playerSavedOnMap) {
             if (player.getName().equals(name)) {
                 player.setMapController(this);
@@ -108,14 +108,24 @@ public class MapController implements Serializable{
         StringBuilder buf = new StringBuilder();
         for (Player player2 : _playerPlayOnMap) {
             if (player2.getPositionID() == player.getPositionID()) {
-                if(player2 != player) {
-                    buf.append((buf.length() == 0) ? "Here are: ": ", ");
+                if (player2 != player) {
+                    buf.append((buf.length() == 0) ? "Here are: " : ", ");
                     buf.append(player2.getName());
                 }
             }
         }
         return buf.toString();
     }
+
+    public String lookForAllPlayerOnMap() {
+        StringBuilder buf = new StringBuilder();
+        for (Player player : _playerPlayOnMap) {
+            buf.append((buf.length() == 0) ? "Connected are: " : ", ");
+            buf.append(player.getName());
+        }
+        return buf.toString();
+    }
+
 
     public String getName() {
         return _mapName;

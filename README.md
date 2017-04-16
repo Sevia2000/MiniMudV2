@@ -1,5 +1,6 @@
 # MiniMudV2
 The a little MUD written in Java
 
-Derzeit gibt es keine Oberfläche. 
-Starten kannst du es nur über die zwei Test Klassen
+Derzeit gibt es keine Oberfläche. Und wird es auch für den Server nie geben.
+Starten kannst du es über die Server Klasse.
+Connect to Port 6262 with Putty in Raw

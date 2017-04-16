@@ -19,7 +19,7 @@ public class SingleSupplyFunction extends FieldFunction implements IFieldFunctio
     private List<Integer> _playerEx;
 
     public SingleSupplyFunction(Items aItem) {
-        this(aItem,_DESCRIPTION + aItem.getShortDescription());
+        this(aItem, _DESCRIPTION + aItem.getShortDescription());
     }
 
     public SingleSupplyFunction(Items aItem, String description) {

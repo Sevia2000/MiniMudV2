@@ -9,23 +9,23 @@ import java.util.List;
 
 /**
  * Describes a Door
- *
+ * <p>
  * Created by Oliver H on 15.04.2017.
  */
 public class Door extends Field {
     private static final String _ONNOSHORTDESCR = "A Door";
-    private static final String _ONNOLONGDESCR  = "A old Door with a keyhole";
-    private static final String _ONNOKEYCLOSED  = "You need a Key to Open this Door";
+    private static final String _ONNOLONGDESCR = "A old Door with a keyhole";
+    private static final String _ONNOKEYCLOSED = "You need a Key to Open this Door";
 
     private int _keyID;
     private List<Integer> _playerEx;
 
-    public Door(int fieldID , int keyID) {
-        this(fieldID, keyID,_ONNOSHORTDESCR, _ONNOLONGDESCR);
+    public Door(int fieldID, int keyID) {
+        this(fieldID, keyID, _ONNOSHORTDESCR, _ONNOLONGDESCR);
     }
 
     public Door(int fieldID, int keyID, String shortDescription, String longDescription) {
-        super(fieldID,shortDescription, longDescription);
+        super(fieldID, shortDescription, longDescription);
         _keyID = keyID;
         _playerEx = new LinkedList<>();
     }
@@ -34,7 +34,7 @@ public class Door extends Field {
     public Field enter(Player player) throws IllegalFieldEnterException {
         if (!isTheDoorOpenfor(player)) {
             for (Items item : player.getAllItemsfromType(Key.class)) {
-                if (_keyID == ((Key)item).getKeyID()) {
+                if (_keyID == ((Key) item).getKeyID()) {
                     openDoorFor(player);
                     player.deleteFromInventory(item);
                     return this;
