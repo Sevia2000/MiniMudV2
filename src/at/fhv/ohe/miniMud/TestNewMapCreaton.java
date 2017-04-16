@@ -24,7 +24,7 @@ public class TestNewMapCreaton {
 
         fields[0].bindFields(fields[2], Directions.EAST);
 
-        MapController testController = new MapController(fields[0]);
+        MapController testController = new MapController(fields[0],"TestMap");
         testController.saveMap("map0.map");
     }
 

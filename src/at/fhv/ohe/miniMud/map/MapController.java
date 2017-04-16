@@ -13,16 +13,18 @@ import java.util.List;
  * Created by Oliver H on 15.04.2017.
  */
 public class MapController implements Serializable{
+    private String _mapName;
     private Field _PlayerSporneField;
     private List<Player> _playerPlayOnMap;
     private List<Player> _playerSavedOnMap;
     private int _playerIDs;
 
-    public MapController(Field _startField) {
+    public MapController(Field _startField, String mapName) {
         _PlayerSporneField = _startField;
         _playerPlayOnMap = new LinkedList<>();
         _playerSavedOnMap = new LinkedList<>();
         _playerIDs = 0;
+        _mapName = mapName;
     }
 
     public static MapController getNewMapInstance(String mapPath) {
@@ -106,10 +108,16 @@ public class MapController implements Serializable{
         StringBuilder buf = new StringBuilder();
         for (Player player2 : _playerPlayOnMap) {
             if (player2.getPositionID() == player.getPositionID()) {
-                //(buf.length() == 0) ? buf.append("Here are: ") : buf.append(", ");    // TODO Fix it here
-                buf.append(player2.getName());
+                if(player2 != player) {
+                    buf.append((buf.length() == 0) ? "Here are: ": ", ");
+                    buf.append(player2.getName());
+                }
             }
         }
         return buf.toString();
+    }
+
+    public String getName() {
+        return _mapName;
     }
 }

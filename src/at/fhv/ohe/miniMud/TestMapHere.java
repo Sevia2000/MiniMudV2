@@ -1,6 +1,5 @@
 package at.fhv.ohe.miniMud;
 
-import at.fhv.ohe.miniMud.map.Directions;
 import at.fhv.ohe.miniMud.map.MapController;
 import at.fhv.ohe.miniMud.map.Player;
 

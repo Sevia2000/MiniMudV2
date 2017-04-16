@@ -3,7 +3,6 @@ package at.fhv.ohe.miniMud.map.FieldFunctions;
 import at.fhv.ohe.miniMud.map.Items.Items;
 import at.fhv.ohe.miniMud.map.Player;
 
-import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 

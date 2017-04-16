@@ -1,5 +1,6 @@
 package at.fhv.ohe.miniMud.map;
 
+import at.fhv.ohe.miniMud.game.ConnectionHandler;
 import at.fhv.ohe.miniMud.map.FieldFunctions.ActionFunctions;
 import at.fhv.ohe.miniMud.map.Fields.Field;
 import at.fhv.ohe.miniMud.map.Fields.IllegalFieldEnterException;
@@ -25,6 +26,7 @@ public class Player implements Serializable {
     private Field _position;
     private boolean _death;
     private transient MapController _mapController;
+    private transient ConnectionHandler _outStream;
 
     private List<Items> _carry;
 
@@ -52,6 +54,10 @@ public class Player implements Serializable {
 
     public void setMapController(MapController mapController) {
         _mapController = mapController;
+    }
+
+    public void setOutStream(ConnectionHandler outStream) {
+        _outStream = outStream;
     }
 
     // Inventory Action
@@ -109,6 +115,18 @@ public class Player implements Serializable {
         _position.action(this, actionFunctions);
     }
 
+    public void lookInventorry() {
+        StringBuilder buf = new StringBuilder();
+        int i = 0;
+        for (Items item : _carry) {
+            buf.append("\r\n <");
+            buf.append(i);
+            buf.append("> ");
+            buf.append(item.getShortDescription());
+        }
+        playerOutputStream(buf.toString());
+    }
+
     public void lookAround() {
         StringBuilder buf = new StringBuilder();
         for (Directions dir : Directions.values()) {
@@ -116,7 +134,7 @@ public class Player implements Serializable {
             buf.append(" - ");
             Field temp = _position.getFieldBindings(dir);
             buf.append((temp == null) ? _NOWAYDESCRIP : temp.getShortDescription());
-            buf.append("\n");
+            buf.append("\r\n");
         }
         playerOutputStream(buf.toString());
     }
@@ -124,18 +142,25 @@ public class Player implements Serializable {
     public void lookHere() {
         StringBuilder buf = new StringBuilder();
         buf.append(_position.getShortDescription());
-        buf.append("\n-> ");
+        buf.append("\r\n-> ");
         buf.append(_position.getLongDescription());
-        buf.append("\n- ");
+        buf.append("\r\n- ");
         buf.append(_position.getFunctionDescription());
-        buf.append("\n");
+        buf.append("\r\n");
         buf.append(_mapController.lookForAnotherPlayer(this));
-
         playerOutputStream(buf.toString());
     }
 
+    public void logOutFromGame() {
+        _mapController.logout(this);
+    }
+
     public synchronized void playerOutputStream(String s) {
-        System.out.println(s);
+        if (_outStream == null) {
+            System.out.println(s);
+        } else {
+            _outStream.sendToClient("\r\n" + s);
+        }
     }
 
 }

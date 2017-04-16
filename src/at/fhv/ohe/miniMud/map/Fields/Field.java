@@ -2,12 +2,10 @@ package at.fhv.ohe.miniMud.map.Fields;
 
 import at.fhv.ohe.miniMud.map.Directions;
 import at.fhv.ohe.miniMud.map.FieldFunctions.ActionFunctions;
-import at.fhv.ohe.miniMud.map.FieldFunctions.FieldFunction;
 import at.fhv.ohe.miniMud.map.FieldFunctions.IFieldFunction;
 import at.fhv.ohe.miniMud.map.Player;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 

@@ -1,7 +1,5 @@
 package at.fhv.ohe.miniMud.map.FieldFunctions;
 
-import at.fhv.ohe.miniMud.map.Player;
-
 import java.io.Serializable;
 
 /**
