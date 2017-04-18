@@ -71,7 +71,7 @@ public class Controller extends Thread {
             }
         }
         _player.setOutStream(_conHand);
-        _player.playerOutputStream("Welcome now you can Play :)");
+        _player.playerOutputStream("Welcome now you can now Play :)");
         _player.playerOutputStream("MUD>");
         while (_isActive) {
             synchronized (this) {
@@ -81,7 +81,7 @@ public class Controller extends Thread {
                     e.printStackTrace();
                 }
             }
-            String[] get = getNextQueueItem().split(" ");
+            String[] get = getNextQueueItem().split(">");
             get[0].toLowerCase();
             switch (get[0]) {
                 case "lookhere":
@@ -99,7 +99,7 @@ public class Controller extends Thread {
                     }
                     break;
 
-                case "getInv":
+                case "getinv":
                     _player.playerOutputStream("<My Inventory>");
                     _player.lookInventorry(_player.getAllItemsfromType(Items.class));
                     break;
@@ -121,6 +121,10 @@ public class Controller extends Thread {
                         _player.playerOutputStream("<Consumable>");
                         _player.lookInventorry(_player.getAllItemsfromType(IConsumable.class));
                     }
+                    break;
+
+                case "talk":
+                    _player.talkToAll(get[1]);
                     break;
 
                 case "?who":

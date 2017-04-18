@@ -16,7 +16,7 @@ public class GameHub {
 
     private GameHub() {
         _mapControllers = new ArrayList<>();
-        MapController temp = MapController.getNewMapInstance("map0.map");
+        MapController temp = MapController.getNewMapInstance("map1.map");
         _mapControllers.add(temp);
     }
 
@@ -28,7 +28,7 @@ public class GameHub {
         List<String> temp = new LinkedList<>();
         int i = 0;
         for (MapController item : _mapControllers) {
-            temp.add("<" + i + "> " + item.getName());
+            temp.add("<" + i++ + "> " + item.getName());
         }
         return Collections.unmodifiableList(temp);
     }

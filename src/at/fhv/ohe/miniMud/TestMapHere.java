@@ -9,6 +9,10 @@ import at.fhv.ohe.miniMud.map.Player;
 public class TestMapHere {
 
     public static void main(String[] args) throws Exception {
+
+
+
+
         MapController testController = MapController.getNewMapInstance("map0.map");
         Player test = testController.addPlayer("TestPalyer");
         test.lookHere();

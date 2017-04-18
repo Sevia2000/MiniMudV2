@@ -4,6 +4,7 @@ package at.fhv.ohe.miniMud.map;
 import at.fhv.ohe.miniMud.map.Fields.Field;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -106,15 +107,25 @@ public class MapController implements Serializable {
 
     public String lookForAnotherPlayer(Player player) {
         StringBuilder buf = new StringBuilder();
-        for (Player player2 : _playerPlayOnMap) {
-            if (player2.getPositionID() == player.getPositionID()) {
-                if (player2 != player) {
-                    buf.append((buf.length() == 0) ? "Here are: " : ", ");
-                    buf.append(player2.getName());
-                }
+        List<Player> temp = getOtherPlayerOnPosition(player.getPositionID());
+
+        for (Player player2 : temp) {
+            if (player2 != player) {
+                buf.append((buf.length() == 0) ? "Here are: " : ", ");
+                buf.append(player2.getName());
             }
         }
         return buf.toString();
+    }
+
+    private List<Player> getOtherPlayerOnPosition(int fieldID) {
+        List<Player> temp = new LinkedList<>();
+        for (Player player : _playerPlayOnMap) {
+            if (player.getPositionID() == fieldID) {
+                temp.add(player);
+            }
+        }
+        return temp;
     }
 
     public String lookForAllPlayerOnMap() {
@@ -129,5 +140,13 @@ public class MapController implements Serializable {
 
     public String getName() {
         return _mapName;
+    }
+
+    public void talkToAll(Player player, String message) {
+        List<Player> temp = getOtherPlayerOnPosition(player.getPositionID());
+        for (Player player1 : temp) {
+            player1.playerOutputStream((player1 == player) ? "You Say: " : player.getName() + " say: ");
+            player1.playerOutputStream(message);
+        }
     }
 }

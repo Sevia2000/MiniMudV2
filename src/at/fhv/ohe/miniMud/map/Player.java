@@ -124,6 +124,10 @@ public class Player implements Serializable {
         _position.action(this, actionFunctions);
     }
 
+    public void talkToAll(String s) {
+        _mapController.talkToAll(this,s);
+    }
+
     public void lookInventorry(List<Items> listOfItems) {
         StringBuilder buf = new StringBuilder();
         int i = 0;
@@ -171,5 +175,6 @@ public class Player implements Serializable {
             _outStream.sendToClient("\r\n" + s);
         }
     }
+
 
 }

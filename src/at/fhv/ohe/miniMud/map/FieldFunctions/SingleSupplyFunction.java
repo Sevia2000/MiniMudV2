@@ -37,9 +37,9 @@ public class SingleSupplyFunction extends FieldFunction implements IFieldFunctio
             } else {
                 player.playerOutputStream(_ALREADYGOT);
             }
+        } else {
+            player.playerOutputStream(_FAILDESCR);
         }
-
-        player.playerOutputStream(_FAILDESCR);
     }
 
     private void giveItemTo(Player player) {

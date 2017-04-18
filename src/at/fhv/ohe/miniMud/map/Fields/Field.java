@@ -46,7 +46,7 @@ public abstract class Field implements Serializable {
     public abstract Field enter(Player player) throws IllegalFieldEnterException;
 
     public void action(Player player, ActionFunctions actionFunctions) {
-        if (_fieldFunction != null) {
+        if (_fieldFunction == null) {
             player.playerOutputStream(_ONFUNCTIONNULL);
         } else {
             _fieldFunction.execude(player, actionFunctions);
