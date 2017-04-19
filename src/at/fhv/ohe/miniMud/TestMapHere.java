@@ -12,7 +12,6 @@ public class TestMapHere {
 
 
 
-
         MapController testController = MapController.getNewMapInstance("map0.map");
         Player test = testController.addPlayer("TestPalyer");
         test.lookHere();

@@ -16,9 +16,11 @@ import at.fhv.ohe.miniMud.map.MapController;
  */
 public class TestNewMapCreaton {
 
+
     public static void main(String[] args) {
 
         Field[] fields = new Field[37];
+
         fields[0] = new Carpet(0, "There is the center of the city of Keldiskor", "You stand in the center of the City of Keldiskor. Capitol of the Keldis Empire and home to the great nobles. Here in the center square stands a large bronze statue of Kael the Great, first ruler of the Elemental lands, gazing endlessly to the distant North. A small metal bench has been placed here for travellers to rest on.");
         fields[1] = new Carpet(1, "There is the Jewel street, to the east is Ragge's general shop, and west is Mab's armory", "Crowds of people swarm the streets here yelling and shouting as they make their way on errands that are far more imporant than everyone else's, while several guards are trying to maintain some measure of peace and prevent any real brawls. The crowds stream north and south along Jewel street, and East into the general store. West is the armory into which flows a slightly hardier stock of people.");
         fields[2] = new Carpet(2, "There is the South of the main square.", "You are South of the main sqaure. The corner of the large castle of the Sha'tals rises here marking the southern end of the square.");

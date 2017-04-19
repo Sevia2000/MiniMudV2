@@ -37,10 +37,11 @@ public class Door extends Field {
                 if (_keyID == ((Key) item).getKeyID()) {
                     openDoorFor(player);
                     player.deleteFromInventory(item);
-                    return this;
+
                 }
             }
             player.playerOutputStream(_ONNOKEYCLOSED);
+            throw new IllegalFieldEnterException(_ONNOKEYCLOSED);
         }
         return this;
     }

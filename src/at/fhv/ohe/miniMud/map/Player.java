@@ -113,9 +113,7 @@ public class Player implements Serializable {
     public void move(Directions direction) {
         try {
             _position = _position.getFieldBindings(direction).enter(this);
-        } catch (IllegalFieldEnterException e) {
-            playerOutputStream(e.getMessage());
-        } catch (NullPointerException e) {
+        } catch (IllegalFieldEnterException | NullPointerException  e) {
             playerOutputStream(_NOWAYDESCRIP);
         }
     }
